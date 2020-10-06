@@ -136,6 +136,10 @@ app {
     top: 0.5rem;
 }
 
+.completed-task{
+    text-decoration: line-through;
+}
+
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
         display: none;
@@ -151,9 +155,9 @@ app {
 }
 
 @media (min-width: 768px) {
-    app {
+    /*app {
         flex-direction: row;
-    }
+    }*/
 
     .sidebar {
         width: 250px;

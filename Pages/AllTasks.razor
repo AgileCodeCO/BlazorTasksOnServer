@@ -1,0 +1,32 @@
+@page "/mytasks"
+
+@inject ITasksRepository _tasksService
+
+@if(TaskItems == null){
+    <LoadingSpinner>
+        Loading...
+    </LoadingSpinner>
+}
+else{
+    <TasksList TaskItems="TaskItems" OnRefreshRequested="RefreshTasks" />
+}
+
+@code{
+    [Parameter] public IEnumerable<TaskModel> TaskItems { get; set; }
+
+    public void RefreshTasks()
+    {
+        LoadTasks();
+    }
+
+    private void LoadTasks()
+    {
+        TaskItems = _tasksService.GetTasks().Where(t => t.IsCompleted == false);
+    }
+
+    protected override void OnInitialized()
+    {
+        LoadTasks();
+    }
+
+}  
